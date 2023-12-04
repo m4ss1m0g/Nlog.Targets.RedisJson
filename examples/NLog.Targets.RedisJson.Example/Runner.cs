@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Nlog.Targets.RedisJson.Example;
+namespace NLog.Targets.RedisJson.Example;
 
 public class Runner
 {

@@ -5,6 +5,9 @@ using NLog.Layouts;
 
 namespace NLog.Targets.RedisJson
 {
+    /// <summary>
+    /// Redis JSON target
+    /// </summary>
     [Target("RedisJson")]
     public class RedisJsonTarget : TargetWithLayout
     {
@@ -43,7 +46,7 @@ namespace NLog.Targets.RedisJson
         /// The key prefix for json entries
         /// </summary>
         public Layout ItemKey { get; set; }
-        /// </summary>
+        
 
         /// <summary>
         /// dd,hh,mm,ss,ms

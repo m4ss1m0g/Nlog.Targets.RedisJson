@@ -2,11 +2,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Nlog.Targets.RedisJson.Example;
+using NLog.Targets.RedisJson.Example;
 using NLog;
 using NLog.Extensions.Logging;
 using NLog.Targets.RedisJson;
 
+// If you install from nuget remove this
 LogManager.Setup().SetupExtensions(ext =>
 {
     ext.RegisterTarget<RedisJsonTarget>();
@@ -14,6 +15,7 @@ LogManager.Setup().SetupExtensions(ext =>
 
 var logger = LogManager.GetCurrentClassLogger();
 
+// Setup like ASP.NET application
 try
 {
     var config = new ConfigurationBuilder()

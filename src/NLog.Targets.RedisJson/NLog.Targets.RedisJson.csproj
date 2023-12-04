@@ -2,10 +2,44 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
+
+    <Product>NLog.Targets.RedisJson</Product>
+    <Description>
+        Adds a target for NLog to write messages in JSON format
+    </Description>
+    <Authors>Massimo Giambona</Authors>
+    <Company>Solidcube</Company>
+    <CurrentYear>$([System.DateTime]::Now.ToString(yyyy))</CurrentYear>
+    <Copyright>Copyright (c) 2023-$(CurrentYear)</Copyright>
+    <AssemblyName>NLog.Targets.RedisJson</AssemblyName>
+    <PackageId>NLog.Targets.RedisJson</PackageId>
+    <PackageTags>logging;log;NLog;redis;json;targets</PackageTags>
+    <PackageReleaseNotes>
+ChangeLog:
+
+Initial release
+    </PackageReleaseNotes>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/m4ss1m0g/NLog.Targets.RedisJson</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/m4ss1m0g/NLog.Targets.RedisJson</RepositoryUrl>
+    <SignAssembly>false</SignAssembly>
+    <Version>1.0.2</Version>
+    <RootNamespace>NLog.Web</RootNamespace>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyTitle>$(Title)</AssemblyTitle>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="NLog.Targets.RedisJson.Test" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Images\logo.png" Pack="true" PackagePath=""/>
+    <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>

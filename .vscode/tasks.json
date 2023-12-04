@@ -2,40 +2,68 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build - debug",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/test/NLog.Targets.RedisJson.Test/NLog.Targets.RedisJson.Test.csproj",
+                "${workspaceFolder}/src/NLog.Targets.RedisJson/NLog.Targets.RedisJson.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build - release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/NLog.Targets.RedisJson/NLog.Targets.RedisJson.csproj",
+                "-c",
+                "Release",
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "pack",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "pack",
+                "${workspaceFolder}/src/NLog.Targets.RedisJson/NLog.Targets.RedisJson.csproj",
+                "-o",
+                "artifacts"
+            ],
+            "problemMatcher": "$msCompile",
+            "dependsOn": "build - release"
         },
         {
             "label": "publish",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/test/NLog.Targets.RedisJson.Test/NLog.Targets.RedisJson.Test.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                "nuget",
+                "push",
+                "${workspaceFolder}/artifacts/NLog.Targets.RedisJson.${input:Version}.nupkg",
+                "--api-key",
+                "${input:NUGET_API_KEY}",
+                "--source",
+                "https://api.nuget.org/v3/index.json",
             ],
-            "problemMatcher": "$msCompile"
+            "dependsOn": "pack"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "NUGET_API_KEY",
+            "description": "Nuget API key",
+            "type": "promptString",
         },
         {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/test/NLog.Targets.RedisJson.Test/NLog.Targets.RedisJson.Test.csproj"
-            ],
-            "problemMatcher": "$msCompile"
+            "id": "Version",
+            "description": "NuPkg package version to deploy",
+            "type": "promptString",
         }
     ]
 }
